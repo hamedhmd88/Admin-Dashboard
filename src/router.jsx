@@ -1,15 +1,37 @@
 import { createBrowserRouter } from "react-router-dom";
-import Login from './features/identity/components/Login'
+import Login, { loginAction } from './features/identity/components/Login'
 import Register, { registerAction } from './features/identity/components/Register'
 import IdentityLayout from "./layouts/IdentityLayout";
+import MainLayout from "./layouts/mainLayout/MainLayout";
+import Courses, { coursesLoader } from "./pages/Courses";
+import CourseCategories from "./pages/CourseCategories";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter([ 
+    {
+        path: '/',
+        element: <MainLayout/>,
+        children: [{
+            element: <Courses/>,
+            index: true,           //   با این مقدار ایندکس تورو خاصیت پیشفرض را مشخص میکنیم
+            loader: coursesLoader,  // لودر یک پراپرتی جدید ریکت روتر است که وقتی یک اطلاعاتی فچ میشود که آن همان فانکشن کورسزبودر ما است با اینکار این را هندل میکنیم
+        },
+        {
+            path: '/course-categories',
+            element: <CourseCategories/>
+        },
+    ]
+    },
+
+   
+    
     {
         element: <IdentityLayout/>,
         children: [
             {
                 path:'/login',
-                element: <Login/>
+                element: <Login/>,
+                action: loginAction,
+                errorElement: <Login/>
             },
             {
                 path:'/register',

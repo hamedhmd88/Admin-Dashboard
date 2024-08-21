@@ -7,7 +7,7 @@ const AppContext = createContext();
 
 const initioalState = {
    language: localStorage.getItem('language') || 'fa',
-   theme: localStorage.getItem('theme') || 'light',
+   theme: localStorage.getItem('theme') || 'dark',
 
 };
 
@@ -28,6 +28,8 @@ function AppProvider({children}) {
     i18n.changeLanguage(state.language);
     localStorage.setItem('language', state.language);
     document.body.dataset.direction = state.language === 'fa' ? 'rtl' : 'ltr';  // برای تغییر جهت صفحه با این کد به اچ تی ام ال دسترسی پیدا میکنیم
+    document.body.dataset.sidebarPosition = state.language === 'fa' ? 'right' : 'left';  // برای تغییر جهت صفحه با این کد به اچ تی ام ال دسترسی پیدا میکنیم
+
   },[state.language])
 
 

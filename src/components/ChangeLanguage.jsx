@@ -12,6 +12,15 @@ function ChangeLanguage() {
 
     const [show, setShow] = useState(false);
 
+        // تغییر زبان با کانتکست
+
+        const {language, changeLanguage} = useAppContext();
+
+        // ساید افکت برای تغییر زبان دراپ داوون بسته شود
+    useEffect(() => {
+        setShow(false)
+    }, [language])
+
     //برای اینکه هر جایی غیر از دراپ دام کیلیک کردیم آن بسته شود باید از یوزرف و یوزافکت استفاده کنیم
 
 
@@ -35,9 +44,7 @@ function ChangeLanguage() {
     },[show])
 
 
-    // تغییر زبان با کانتکست
 
-    const {language, changeLanguage} = useAppContext()
 
 
   return (
